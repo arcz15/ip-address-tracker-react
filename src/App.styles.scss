@@ -1,0 +1,102 @@
+@use './constants/vars';
+
+.app {
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    z-index: 5;
+
+    * {
+        grid-column: 1 / -1;
+        grid-row: 1 / -1;
+    }
+
+    &__background {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+
+        &-image {
+            height: 280px;
+            max-width: 100%;
+            object-fit: cover;
+        }
+
+        &-map {
+            height: calc(100% - 280px);
+            background-color: gray;
+        }
+    }
+
+    &__foreground {
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 5px 25px;
+        max-height: 450px;
+
+        &-title {
+            color: #fff;
+            font-weight: 500;
+            font-size: 28px;
+        }
+
+        &__searchbar {
+            height: 55px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            input {
+                outline: none;
+                border: none;
+                height: 55px;
+                width: 80%;
+                border-radius: vars.$border-radius 0 0 vars.$border-radius;
+                padding: 0 22px;
+                font-size: 18px;
+            }
+
+            div.search-button {
+                background-image: url('./assets/icon-arrow.svg');
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 15px;
+                width: 60px;
+                height: 100%;
+                background-color: #000;
+                border: none;
+                border-radius: 0 vars.$border-radius vars.$border-radius 0;
+                cursor: pointer;
+                transition: background-color 150ms ease-in-out;
+
+                &:hover {
+                    background-color: vars.$very-dark-gray;
+                }
+            }
+        }
+
+        &__info-panel {
+            width: 100%;
+            margin-top: 25px;
+        }
+    }
+}
+
+@media (min-width: vars.$desktop-breakpoint) {
+    .app__foreground {
+
+        &__searchbar {
+            max-width: 40%;
+            margin-top: 8px;
+        }
+
+        &__info-panel {
+            display: flex;
+            justify-content: center;
+            margin-top: 45px;
+        }
+    }
+}
