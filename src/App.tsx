@@ -32,7 +32,7 @@ const App = () => {
                 <img src={PatternBackground} alt='Pattern background' className='app__background-image'/>
                 <div className='app__background-map'>
                     {!isLoading && (
-                        <Map lat={data.location.lat} long={data.location.lng} />
+                        <Map lat={data?.location?.lat || 37.3861} long={data?.location?.lng || 122.0839} />
                     )}
                 </div>
             </div>
@@ -47,7 +47,7 @@ const App = () => {
                         <InfoPanel
                             ip={data.ip}
                             location={location}
-                            timezone={`UTC ${data.location.timezone}`}
+                            timezone={`UTC ${data?.location?.timezone}`}
                             isp={data.isp}
                         />
                     )}
